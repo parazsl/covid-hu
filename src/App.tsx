@@ -1,29 +1,28 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
+import { Header } from './components/Header';
+import { Button } from './components/Button';
+import { getDefaultTheme, Themes } from './utils/getDefaultTheme';
+
 import { darkTheme, lightTheme } from './styles/themes';
 import { GlobalStyles } from './styles/global';
 
-const defaultTheme = matchMedia('(prefers-color-scheme: dark)').matches
-  ? 'dark'
-  : 'light';
-
-console.log(defaultTheme);
+const defaultTheme = getDefaultTheme();
 
 const App = () => {
   const [theme, setTheme] = useState(defaultTheme);
 
   const switchTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    const newTheme = theme === Themes.DARK ? Themes.LIGHT : Themes.DARK;
     setTheme(newTheme);
   };
 
   return (
-    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+    <ThemeProvider theme={theme === Themes.DARK ? darkTheme : lightTheme}>
       <GlobalStyles />
-      <div className="App" onClick={switchTheme}>
-        COVID-19 stats - Hungary
-      </div>
+      <Header />
+      <Button onClick={switchTheme} title="Switch theme" />
     </ThemeProvider>
   );
 };
