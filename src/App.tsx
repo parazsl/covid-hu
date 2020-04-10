@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
+import { Wrapper } from 'components/Wrapper';
 import { Header } from 'components/Header';
 import { Themes } from 'utils/getDefaultTheme';
 import { ThemeContext } from 'contexts/ThemeContext';
@@ -14,7 +15,9 @@ export const App = () => {
       {({ theme }) => (
         <ThemeProvider theme={theme === Themes.DARK ? darkTheme : lightTheme}>
           <GlobalStyles />
-          <Header />
+          <Wrapper>
+            <Header />
+          </Wrapper>
         </ThemeProvider>
       )}
     </ThemeContext.Consumer>

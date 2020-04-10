@@ -9,6 +9,11 @@ export const GlobalStyles = createGlobalStyle`
 body {
   color: ${({ theme }) => theme.text};
   background: ${({ theme }) => theme.body};
-  transition: all 200ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
 }
 `;
